@@ -54,7 +54,6 @@ void loop() {
  }
 Serial.println();
 
-    // Impressão detalhada
     // Serial.print("Sensor A");
     // Serial.print(flexPins[i] - A0);
     // Serial.print(" | Valor lido: ");
