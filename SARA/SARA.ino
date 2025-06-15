@@ -5,12 +5,8 @@ int serial_putchar(char c, FILE* f) {
   Serial.write(c);
   return 0;
 }
-
-// Sensores nos pinos A1,A2,A3,A6,A7
 const int flexPins[5] = {A1,A2,A3,A6,A7};
-// Servos nos pinos digitais 3,5,6,9,10
 const int servoPins[5] = {3,5,6,9,10};
-// Cria 5 objetos servo
 Servo servos[5];
 
 const int min[5] = {906,612,816,969,227};
@@ -38,8 +34,7 @@ void loop() {
     flexValue[i] = analogRead(flexPins[i]);
     angle[i] = map(flexValue[i], min[i], max[i], min_ang[i], max_ang[i]);
     angle[i] = constrain(angle[i], min_ang[i], max_ang[i]);
-    } 
-    
+    }    
   for (int i = 2; i < 5; i++) {
     flexValue[i] = analogRead(flexPins[i]);
     angle[i] = map(flexValue[i], min[i], max[i], min_ang[i], max_ang[i]);
@@ -49,24 +44,9 @@ void loop() {
  
  for (int i = 0; i < 5; i++) {
     servos[i].write(angle[0]);
-    
     printf("Sensor A%d = %d | Ângulo enviado: %d ||| ", i + 1, analogRead(flexPins[i]), angle[i]);
  }
 Serial.println();
-
-    // Serial.print("Sensor A");
-    // Serial.print(flexPins[i] - A0);
-    // Serial.print(" | Valor lido: ");
-    // Serial.print(flexValue);
-    // Serial.print(" | Ângulo enviado: ");
-    // Serial.print(angle);
-    // Serial.print(" | Servo: ");
-    // Serial.println(i + 1);
-
-  
-
-  
-
   Serial.println(" -");
   delay(300);
 }
